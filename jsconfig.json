@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "node",
+    "target": "es2021",
+    "baseUrl": "./",
+    "paths": {
+      "@eddieonthecode/nest-core": ["./dist/index.js"],
+      "@eddieonthecode/nest-core/*": ["./dist/*/index.js"]
+    }
+  },
+  "include": ["dist"],
+  "exclude": ["node_modules"]
+}

@@ -1,0 +1,147 @@
+{
+  "name": "@eddieonthecode/nest-core",
+  "version": "0.1.0",
+  "description": "A useful package to help build REST APIs faster and more effectively with NestJS and TypeORM",
+  "author": "Eddie on the Code",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    },
+    "./decorators": {
+      "types": "./dist/decorators/index.d.ts",
+      "import": "./dist/decorators/index.js",
+      "require": "./dist/decorators/index.js"
+    },
+    "./decorators/*": {
+      "types": "./dist/decorators/*.d.ts",
+      "import": "./dist/decorators/*.js",
+      "require": "./dist/decorators/*.js"
+    },
+    "./interceptors": {
+      "types": "./dist/interceptors/index.d.ts",
+      "import": "./dist/interceptors/index.js",
+      "require": "./dist/interceptors/index.js"
+    },
+    "./interceptors/*": {
+      "types": "./dist/interceptors/*.d.ts",
+      "import": "./dist/interceptors/*.js",
+      "require": "./dist/interceptors/*.js"
+    },
+    "./models": {
+      "types": "./dist/models/index.d.ts",
+      "import": "./dist/models/index.js",
+      "require": "./dist/models/index.js"
+    },
+    "./models/*": {
+      "types": "./dist/models/*.d.ts",
+      "import": "./dist/models/*.js",
+      "require": "./dist/models/*.js"
+    },
+    "./naming-strategies": {
+      "types": "./dist/naming-strategies/index.d.ts",
+      "import": "./dist/naming-strategies/index.js",
+      "require": "./dist/naming-strategies/index.js"
+    },
+    "./naming-strategies/*": {
+      "types": "./dist/naming-strategies/*.d.ts",
+      "import": "./dist/naming-strategies/*.js",
+      "require": "./dist/naming-strategies/*.js"
+    },
+    "./routes": {
+      "types": "./dist/routes/index.d.ts",
+      "import": "./dist/routes/index.js",
+      "require": "./dist/routes/index.js"
+    },
+    "./routes/*": {
+      "types": "./dist/routes/*.d.ts",
+      "import": "./dist/routes/*.js",
+      "require": "./dist/routes/*.js"
+    },
+    "./utils": {
+      "types": "./dist/utils/index.d.ts",
+      "import": "./dist/utils/index.js",
+      "require": "./dist/utils/index.js"
+    },
+    "./utils/*": {
+      "types": "./dist/utils/*.d.ts",
+      "import": "./dist/utils/*.js",
+      "require": "./dist/utils/*.js"
+    },
+    "./validators": {
+      "types": "./dist/validators/index.d.ts",
+      "import": "./dist/validators/index.js",
+      "require": "./dist/validators/index.js"
+    },
+    "./validators/*": {
+      "types": "./dist/validators/*.d.ts",
+      "import": "./dist/validators/*.js",
+      "require": "./dist/validators/*.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "typesVersions": {
+    "*": {
+      "decorators": ["./dist/decorators/index.d.ts"],
+      "decorators/*": ["./dist/decorators/*.d.ts"],
+      "interceptors": ["./dist/interceptors/index.d.ts"],
+      "interceptors/*": ["./dist/interceptors/*.d.ts"],
+      "models": ["./dist/models/index.d.ts"],
+      "models/*": ["./dist/models/*.d.ts"],
+      "naming-strategies": ["./dist/naming-strategies/index.d.ts"],
+      "naming-strategies/*": ["./dist/naming-strategies/*.d.ts"],
+      "routes": ["./dist/routes/index.d.ts"],
+      "routes/*": ["./dist/routes/*.d.ts"],
+      "utils": ["./dist/utils/index.d.ts"],
+      "utils/*": ["./dist/utils/*.d.ts"],
+      "validators": ["./dist/validators/index.d.ts"],
+      "validators/*": ["./dist/validators/*.d.ts"]
+    }
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "scripts": {
+    "build": "tsc && node postbuild.js",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^10.0.0 || ^11.0.0",
+    "@nestjs/core": "^10.0.0 || ^11.0.0",
+    "@nestjs/typeorm": "^10.0.0 || ^11.0.0",
+    "rxjs": "^7.0.0",
+    "typeorm": "^0.3.17"
+  },
+  "dependencies": {
+    "class-transformer": "^0.5.0",
+    "class-validator": "^0.14.0",
+    "dayjs": "^1.11.19",
+    "typeorm-naming-strategies": "^4.1.0",
+    "nestjs-typeorm-paginate": "^4.1.0"
+  },
+  "devDependencies": {
+    "@nestjs/common": "^10.0.0 || ^11.0.0",
+    "@nestjs/core": "^10.0.0 || ^11.0.0",
+    "@nestjs/typeorm": "^10.0.0 || ^11.0.0",
+    "@types/node": "^20.0.0",
+    "rxjs": "^7.0.0",
+    "typeorm": "^0.3.17",
+    "typescript": "^5.9.3"
+  },
+  "keywords": [
+    "nestjs",
+    "typeorm",
+    "rest-api",
+    "typescript",
+    "decorators",
+    "validators"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eddieonthecode/nest-core.git"
+  }
+}
