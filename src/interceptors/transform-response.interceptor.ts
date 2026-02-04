@@ -9,11 +9,52 @@ import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { ApiResponse, ControllerResponse } from "../models";
 
+/**
+ * Interceptor that transforms all responses into a consistent API response format.
+ *
+ * This interceptor standardizes the response structure across all endpoints,
+ * providing consistent formatting for success responses, error handling,
+ * and additional features like cookie management and redirects.
+ *
+ * @example
+ * ```typescript
+ * // Apply globally in main.ts
+ * app.useGlobalInterceptors(new TransformResponseInterceptor());
+ *
+ * // Or apply to specific controllers/methods
+ * @UseInterceptors(TransformResponseInterceptor)
+ * @Controller('users')
+ * export class UserController {
+ *   @Get()
+ *   getUsers() {
+ *     return { users: [] }; // Will be transformed to ApiResponse format
+ *   }
+ * }
+ * ```
+ *
+ * The transformed response format:
+ * ```typescript
+ * {
+ *   statusCode: number,
+ *   message: string,
+ *   data: any,
+ *   timestamp: string,
+ *   path: string
+ * }
+ * ```
+ */
 @Injectable()
 export class TransformResponseInterceptor<T> implements NestInterceptor<
   T | ControllerResponse<T>,
   ApiResponse<T>
 > {
+  /**
+   * Intercepts the response and transforms it to the standard API format.
+   *
+   * @param context - The execution context of the request
+   * @param next - The next handler in the chain
+   * @returns Observable<ApiResponse<T>> - The transformed response
+   */
   intercept(
     context: ExecutionContext,
     next: CallHandler,
@@ -75,7 +116,12 @@ export class TransformResponseInterceptor<T> implements NestInterceptor<
     );
   }
 
-  // Helper to check if the response is a ControllerResponse
+  /**
+   * Helper method to check if the response is a ControllerResponse object.
+   *
+   * @param response - The response to check
+   * @returns boolean - True if the response is a ControllerResponse
+   */
   private isControllerResponse<T>(
     response: any,
   ): response is ControllerResponse<T> {

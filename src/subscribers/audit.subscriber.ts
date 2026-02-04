@@ -8,6 +8,10 @@ import { BaseEntity } from "../entities";
 import { RequestContext } from "../interceptors";
 
 @EventSubscriber()
+/**
+ * AuditSubscriber automatically populates audit fields
+ * (createdBy, updatedBy) for all entities extending BaseEntity.
+ */
 export class AuditSubscriber implements EntitySubscriberInterface<BaseEntity> {
   listenTo() {
     return BaseEntity;

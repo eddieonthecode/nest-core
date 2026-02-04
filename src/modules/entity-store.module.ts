@@ -14,7 +14,7 @@
  * ```typescript
  * import { Module } from '@nestjs/common';
  * import { TypeOrmModule } from '@nestjs/typeorm';
- * import { EntityStoreModule } from './entity-store.module';
+ * import { EntityStoreModule } from './modules/entity-store.module';
  * import { User, Product } from './entities';
  *
  * @Module({
@@ -33,7 +33,7 @@
  * ```typescript
  * import { Module } from '@nestjs/common';
  * import { TypeOrmModule } from '@nestjs/typeorm';
- * import { EntityStoreModule } from './entity-store.module';
+ * import { EntityStoreModule } from './modules/entity-store.module';
  * import { User, Product, Analytics } from './entities';
  *
  * @Module({
@@ -62,8 +62,8 @@
  * @example Using in a service
  * ```typescript
  * import { Injectable } from '@nestjs/common';
- * import { InjectEntityStore } from './entity-store.module';
- * import { EntityStore } from './entity-store';
+ * import { InjectEntityStore } from './modules/entity-store.module';
+ * import { EntityStore } from './modules/entity-store.module';
  * import { User, Analytics } from './entities';
  *
  * @Injectable()
@@ -95,8 +95,8 @@ import {
 } from "@nestjs/common";
 import { getDataSourceToken } from "@nestjs/typeorm";
 import { DataSource } from "typeorm";
-import { BaseEntity } from "./base.entity";
-import { EntityStore, EntityStoreSoftDelete } from "./entity-store";
+import { BaseEntity } from "../entities/base.entity";
+import { EntityStore, EntityStoreSoftDelete } from "../entities/entity-store";
 
 /**
  * Generates a unique token for an EntityStore provider.
@@ -152,12 +152,12 @@ export function InjectEntityStore(
 }
 
 /**
- * Validates that an entity class extends the BaseEntity from this package.
+ * Validates that an entity class extends BaseEntity from this package.
  * This ensures entities use the correct BaseEntity implementation with
  * required features for EntityStore functionality.
  *
  * @param entity - The entity class to validate
- * @throws Error if entity does not extend the BaseEntity from this package
+ * @throws Error if entity does not extend BaseEntity from this package
  *
  * @internal
  */
@@ -180,7 +180,7 @@ function validateEntityInheritance(entity: Type<unknown>): void {
       `Entity "${entity.name}" must extend BaseEntity from this package (entity-store module). ` +
         `Found entity extending: ${Object.getPrototypeOf(entity).name || "unknown"}. ` +
         `Please ensure your entity imports and extends the correct BaseEntity: ` +
-        `"import { BaseEntity } from './base.entity'"`,
+        `"import { BaseEntity } from '../entities/base.entity'"`,
     );
   }
 }
